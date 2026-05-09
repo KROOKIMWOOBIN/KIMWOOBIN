@@ -1,0 +1,63 @@
+---
+layout: default
+title: Kim Woobin
+description: 기술을 기록하고, 경험을 되짚는 개인 공간입니다.
+---
+<section class="home-hero">
+  <div class="home-hero__copy">
+    <p class="eyebrow">kimwoobin.github.io</p>
+    <h1>기술을 기록하고 경험을 되짚습니다.</h1>
+    <p>개발하며 배운 것, 문제를 풀며 남긴 판단, 지나온 시간을 정리한 회고를 함께 쌓아갑니다.</p>
+  </div>
+  <div class="home-hero__panel" aria-label="사이트 분류">
+    <a href="{{ '/blog/' | relative_url }}">
+      <span>Tech</span>
+      <strong>기술 블로그</strong>
+    </a>
+    <a href="{{ '/memoirs/' | relative_url }}">
+      <span>Memoir</span>
+      <strong>회고록</strong>
+    </a>
+  </div>
+</section>
+
+<section class="section-grid" aria-labelledby="latest-tech">
+  <div class="section-heading">
+    <p class="eyebrow">Latest</p>
+    <h2 id="latest-tech">최근 기술 글</h2>
+  </div>
+  <div class="post-list">
+    {% for post in site.posts limit: 3 %}
+      <article class="post-card">
+        <p class="post-card__meta">{{ post.date | date: "%Y.%m.%d" }}</p>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        {% if post.description %}
+          <p>{{ post.description }}</p>
+        {% endif %}
+      </article>
+    {% else %}
+      <p class="empty-state">아직 등록된 기술 글이 없습니다.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section-grid" aria-labelledby="latest-memoirs">
+  <div class="section-heading">
+    <p class="eyebrow">Memoirs</p>
+    <h2 id="latest-memoirs">최근 회고록</h2>
+  </div>
+  <div class="post-list">
+    {% assign memoirs = site.memoirs | sort: "date" | reverse %}
+    {% for memoir in memoirs limit: 3 %}
+      <article class="post-card">
+        <p class="post-card__meta">{{ memoir.date | date: "%Y.%m.%d" }}</p>
+        <h3><a href="{{ memoir.url | relative_url }}">{{ memoir.title }}</a></h3>
+        {% if memoir.description %}
+          <p>{{ memoir.description }}</p>
+        {% endif %}
+      </article>
+    {% else %}
+      <p class="empty-state">아직 등록된 회고록이 없습니다.</p>
+    {% endfor %}
+  </div>
+</section>

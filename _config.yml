@@ -1,0 +1,40 @@
+title: Kim Woobin
+author: Kim Woobin
+description: 기술 블로그와 회고록
+url: "https://kimwoobin.github.io"
+baseurl: ""
+lang: ko-KR
+timezone: Asia/Seoul
+
+collections:
+  memoirs:
+    output: true
+    permalink: /memoirs/:name/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: page
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      category: tech
+      permalink: /blog/:year/:month/:day/:title/
+  - scope:
+      path: ""
+      type: "memoirs"
+    values:
+      layout: post
+      category: memoir
+
+markdown: kramdown
+highlighter: rouge
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

@@ -1,0 +1,27 @@
+---
+layout: page
+title: 회고록
+description: 프로젝트, 학습, 커리어와 일상에서 남겨둘 만한 경험을 정리합니다.
+eyebrow: Memoirs
+---
+{% assign memoirs = site.memoirs | sort: "date" | reverse %}
+<div class="post-list post-list--full">
+  {% for memoir in memoirs %}
+    <article class="post-card">
+      <p class="post-card__meta">{{ memoir.date | date: "%Y.%m.%d" }}</p>
+      <h2><a href="{{ memoir.url | relative_url }}">{{ memoir.title }}</a></h2>
+      {% if memoir.description %}
+        <p>{{ memoir.description }}</p>
+      {% endif %}
+      {% if memoir.tags and memoir.tags.size > 0 %}
+        <div class="tag-list" aria-label="태그">
+          {% for tag in memoir.tags %}
+            <span>{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </article>
+  {% else %}
+    <p class="empty-state">아직 등록된 회고록이 없습니다.</p>
+  {% endfor %}
+</div>
